@@ -288,18 +288,18 @@ THEMES=[
   "This entity sees no stranger."),
  ("Release, not relic",
   "He went to the Muzaffarabad bridge intending to carry home a sealed bottle of grave-soil, and chose to leave it. A man turning toward inherited trauma rather than away — closure, not grievance.",
-  "The closure I had been seeking happened with the acceptance that things have changed and I need to move on."),
+  "The closure I had been seeking in my mind happened with the acceptance that things have changed and I need to move on in life."),
  ("Heritage beyond religion",
   "His refrain: heritage has been wrongly “reduced to a realm of religion.” The deeper recovery is of a trans-religious, pan-Punjabi shared culture that 1947 fractured — a Sufi’s verses sitting inside the Sikh scripture, recited daily.",
   "Guru Nanak’s narrative of coexistence is to put humanity first and to not get divided by faith."),
 ]
 
 TIMELINE=[
- ("1966","Born in Gorakhpur to a goldsmith father. The family came from Muzaffarabad, Kashmir; his father had left for Gorakhpur in 1945 to set up a jewellery business — which is why this branch survived."),
- ("Oct 1947","Pashtun tribal militias sweep the Muzaffarabad valley. Over 300 Sikh men are shot at the Ranbir Singh / Dumel bridge — among them his relatives, and his wife Vininder Kaur’s grandparents."),
+ ("Oct 1947","Pashtun tribal militias sweep the Muzaffarabad valley, the family’s home in Kashmir. Over 300 Sikh men are shot at the Ranbir Singh / Dumel bridge — among them his relatives, and the grandparents of his future wife, Vininder Kaur. His father, who had left for Gorakhpur in 1945 to set up a jewellery business, is spared — which is why this branch survives."),
+ ("1966","Born in Gorakhpur to a goldsmith father — and raised not on the tragedy but on his parents’ fond memories of the region, which left him curious rather than bitter."),
  ("School → career","Doon School, Electronics Engineering at Manipal, then an MBA from the University of Chicago. Twenty-five years in financial services — twenty-one at American Express, rising to Head of Revenue Management, Asia Pacific. India → Hong Kong → Singapore (2001; citizen 2005)."),
  ("2013","Resigns following what he calls a “spiritual calling.”"),
- ("Dec 2014","A single ~30-day pilgrimage to Pakistan to see his ancestral ground. On 26 December the thought of a book first occurs. At the bridge, he leaves the bottle of soil."),
+ ("2014","A single ~30-day pilgrimage to Pakistan to see his ancestral ground. He arrives a pilgrim with what he later calls a “myopic” lens, and realises on the road that “reducing Pakistan to religion was doing a disservice to its people and heritage.” On 26 December the thought of a book first occurs. At the bridge, he leaves the bottle of soil."),
  ("2016 & 2017","Publishes the two Lost Heritage books, documenting ~126–132 Sikh sites across Pakistan before they vanish."),
  ("2021–22","Releases Allegory: A Tapestry of Guru Nanak’s Travels — the 24-episode docuseries across nine countries."),
  ("2022","Wins the Guru Nanak Interfaith Prize (Hofstra University, $50,000), chosen unanimously from ~18 nominees."),
@@ -326,8 +326,8 @@ QUOTES=[
  ("Allegory is a revelation of a hidden meaning within a narrative.","Allegory, Episode 1 — the series’ opening definition"),
  ("It is important to understand that Guru Nanak was an embodiment of Oneness.","Associated Press of Pakistan"),
  ("Guru Nanak’s narrative of coexistence is to put humanity first and to not get divided by faith.","Associated Press of Pakistan"),
- ("Our physical journey in the footsteps of Guru Nanak enabled us to experience the entirety of creation as One comprehensive phenomenon which can be comprehended through truthful intentions.","Hofstra Interfaith Prize statement, 2022"),
- ("The process of learning also feeds the Ego, creating a mist around our subtle faculties that perceive the world. Indeed, the more I learn, the less I know!","Essay: The More I Learn, The Less I Know"),
+ ("Our physical journey in the footsteps of Guru Nanak … enabled us to experience the entirety of creation as One comprehensive phenomenon which can be comprehended through truthful intentions.","Hofstra Interfaith Prize statement, 2022"),
+ ("The process of learning also feeds the Ego, creating a mist around our subtle faculties that perceive the world. … Indeed, the more I learn, the less I know!","Essay: The More I Learn, The Less I Know"),
  ("Pursuits of life need to be spent towards creating berms around the Mind, so that its natural tendency to gravitate thoughts towards the path of least resistance of sense gratification become restricted.","Essay: Berm the Mind"),
  ("Fear arises from one’s mind trap. My passion for exploration far outweighed ambiguous thoughts.","Chronicler of a lost legacy, interview"),
  ("The closure I had been seeking in my mind happened with the acceptance that things have changed and I need to move on in life.","On leaving the grave-soil at the Muzaffarabad bridge"),
@@ -624,7 +624,7 @@ mark.hit.cur{background:var(--saffron); color:#fff}
 @media print{
  nav,#prog,#top,.search,.epctl,.ep-toolbar{display:none!important}
  body{font-size:11pt} body::before,body::after{display:none}
- details.ep,details.prep{open:true} details>summary{list-style:none}
+ details>summary{list-style:none}
  .panel-transcript{display:none!important} .panel.hidden{display:block!important}
  a{color:var(--ink)} section{padding:18px 0; border-color:#ccc}
  .ep-body{padding-left:0}
@@ -639,6 +639,7 @@ function setTab(btn,n,which){
   ep.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('hidden', p.dataset.panel!==which)});
 }
 function expandAll(v){document.querySelectorAll('details.ep').forEach(function(d){d.open=v})}
+window.addEventListener('beforeprint',function(){expandAll(true)});
 // progress + back-to-top
 var prog=document.getElementById('prog'), topBtn=document.getElementById('top');
 window.addEventListener('scroll',function(){
@@ -852,10 +853,10 @@ def main():
   <div class="brand"><span class="gu">ੴ</span>Allegory</div>
   <div class="links">
     <a href="#themes">Themes</a><a href="#life">The Man</a><a href="#work">Body of Work</a>
-    <a href="#words">His Words</a><a href="#start">Start Here</a><a href="#journey">Journey</a><a href="#episodes">24 Episodes</a>
+    <a href="#words">His Words</a><a href="#start">Start Here</a><a href="#journey">Journey</a><a href="#episodes">24 Episodes</a><a href="#prep">Questions</a>
   </div>
   <div class="search"><span class="mag">⌕</span>
-    <input id="q" type="search" placeholder="Search all 24 scripts…" autocomplete="off" spellcheck="false">
+    <input id="q" type="search" aria-label="Search all 24 scripts" placeholder="Search all 24 scripts…" autocomplete="off" spellcheck="false">
     <span class="cnt" id="cnt"></span>
   </div>
 </div></nav>""")
@@ -880,18 +881,26 @@ def main():
   (Lost Heritage Productions), offered with gratitude — all words are theirs. Sources: the official
   “Script &amp; Discussion Pointers” PDFs and the (English) Allegory YouTube playlist, both at
   TheGuruNanak.com (channel @OnenessInDiversity). Verbatim scripts + timestamped captions, unedited.
+  If anything here should be corrected, attributed differently, or removed,
+  <a href="https://github.com/komnieve/allegory-guru-nanak/issues" target="_blank" rel="noopener">open an issue</a> — it will be honoured.
   &nbsp;·&nbsp; Press <b>Esc</b> to clear search.
 </footer>""")
     page=("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
           "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
           "<title>Amardeep Singh — Allegory & the Work of Oneness</title>"
+          "<meta name=\"description\" content=\"A study companion to Amardeep Singh &amp; Vininder Kaur's Allegory docuseries — the themes, an interactive map of Guru Nanak's journeys, and all 24 episode scripts, searchable and linked to the films.\">"
+          "<meta property=\"og:title\" content=\"Allegory — A Tapestry of Guru Nanak's Travels\">"
+          "<meta property=\"og:description\" content=\"The life, themes, and complete 24-episode scripts of Amardeep Singh &amp; Vininder Kaur's Allegory — with an interactive journey map and full-text search.\">"
+          "<meta property=\"og:type\" content=\"website\">"
+          "<meta property=\"og:url\" content=\"https://komnieve.github.io/allegory-guru-nanak/\">"
+          "<meta name=\"twitter:card\" content=\"summary\">"
           "<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f3eada'/%3E%3Ctext x='32' y='49' font-size='44' text-anchor='middle' fill='%23a3761c'%3E%E0%A8%B4%3C/text%3E%3C/svg%3E\">"
           "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">"
           "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>"
           "<link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Gurmukhi:wght@400;600;700&display=swap\" rel=\"stylesheet\">"
           f"<style>{CSS}</style></head><body>"
           f"<div class=\"wrap\">{nav}{hero}<main id=\"doc\">{body}</main>{footer}</div>"
-          "<button id=\"top\" onclick=\"window.scrollTo({top:0,behavior:'smooth'})\">↑</button>"
+          "<button id=\"top\" aria-label=\"Back to top\" onclick=\"window.scrollTo({top:0,behavior:'smooth'})\">↑</button>"
           f"<script>{JS}</script></body></html>")
     with open(OUT,'w',encoding='utf-8') as f: f.write(page)
     print(f"[{'PUBLIC' if PUBLIC else 'private'}] wrote {OUT}  ({os.path.getsize(OUT)/1024:.0f} KB)")
