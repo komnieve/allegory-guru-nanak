@@ -87,14 +87,14 @@ EPLOC = {
  13:(10.96,79.38,"the Tamil temple land"),
  14:(9.10,79.80,"Rameswaram → the Sri Lanka crossing"),
  15:(11.25,75.78,"Malabar"),
- 16:(12.50,71.50,"the Arabian Sea — the boat of wisdom"),
+ 16:(21.71,72.99,"Bharuch (Gujarat) — the boat of wisdom"),
  17:(31.50,75.00,"the return home, after twelve years"),
  18:(31.07,81.31,"Mount Kailash / Sumeru — the Siddhas"),
  19:(33.74,72.82,"Taxila"),
  20:(27.70,68.85,"the banks of the Sindhu (Indus)"),
  21:(21.42,39.83,"Mecca — the Unity of Being"),
- 22:(35.00,61.00,"Khorasan — the scent of humanity"),
- 23:(33.31,44.36,"Baghdad — Nanak and Mardana"),
+ 22:(34.53,69.17,"Khorasan (Afghanistan) — the scent of humanity"),
+ 23:(30.20,71.47,"Multan — Nanak and Mardana"),
  24:(32.06,75.00,"Kartarpur — the close"),
 }
 JOURNEY_COUNTRIES={"Pakistan","India","Bangladesh","Afghanistan","Iran","Iraq","Saudi Arabia","China","Sri Lanka"}
@@ -122,12 +122,15 @@ def map_svg():
     labels="".join(f'<text class="clbl" x="{prj(lo,la)[0]:.0f}" y="{prj(lo,la)[1]:.0f}">{esc(t)}</text>'
                    for t,la,lo in CLABELS)
     pts=[prj(EPLOC[n][1],EPLOC[n][0]) for n in range(1,25)]
+    # per Amardeep (Jul 2026): the 21→22 leg travels Mecca → Iraq → Iran → Afghanistan
+    VIA={21:[(33.31,44.36),(32.20,54.50)]}  # (lat,lon) waypoints keyed by segment-start episode
     seg=[]
     for i in range(len(pts)-1):
-        (x1,y1),(x2,y2)=pts[i],pts[i+1]
-        dx,dy=x2-x1,y2-y1; L=math.hypot(dx,dy) or 1; off=0.16*L
-        cx,cy=(x1+x2)/2-dy/L*off,(y1+y2)/2+dx/L*off
-        seg.append(f"M{x1:.1f},{y1:.1f} Q{cx:.1f},{cy:.1f} {x2:.1f},{y2:.1f}")
+        chain=[pts[i]]+[prj(lo,la) for la,lo in VIA.get(i+1,[])]+[pts[i+1]]
+        for (x1,y1),(x2,y2) in zip(chain,chain[1:]):
+            dx,dy=x2-x1,y2-y1; L=math.hypot(dx,dy) or 1; off=0.16*L
+            cx,cy=(x1+x2)/2-dy/L*off,(y1+y2)/2+dx/L*off
+            seg.append(f"M{x1:.1f},{y1:.1f} Q{cx:.1f},{cy:.1f} {x2:.1f},{y2:.1f}")
     pins=[]
     for n in range(1,25):
         x,y=pts[n-1]; tr=META[n][2]; place=EPLOC[n][2]
